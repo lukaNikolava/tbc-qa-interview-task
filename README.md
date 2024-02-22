@@ -254,3 +254,60 @@ It is required to use AndroidX libraries. You can get some problems with Android
 - https://github.com/open-tool/ultron/issues/11 Jetpack Compose support improvement
 - https://github.com/open-tool/ultron/issues/21 Add hasTextColor matcher
 
+
+## Task --
+
+### Step 1 
+- Clone repository from – https://github.com/GKObakhidze/Friends-Espresso
+- Project name on GitHub  -  Friends-Espresso
+- Go to test packages – sample-app  src androidTest  java  com.atiurin.sampleapp
+
+### Step 2 
+ - Create branch Text_With_My_Friend and make the following changes in this branch
+
+### Step 3
+- Use android studio Layout inspector to find element type or id(you can also use Appium inspector for that )
+
+### Step 4 
+- Use page object model: Page, Steps, and Tests packages and place all your following changes there
+
+matchers(pages) packages with an object in it and place your variables there
+create step object for actions and use them in test cases:
+-    open chat with my friend step (with parameter)
+-    enter text step (with parameter)
+-    open menu step
+-    chose menu item step (with parameter)
+-    and others ...
+ 
+### Step 5
+ - Create your tests in the test class named --> `ChattingTests.kt` (in espresso test package)
+
+1 TC
+ - create kotlin test - fun
+ - 1. check that the dashboard is loaded 
+    2. open chat with your friend (choose addressee who you wish ) 
+    3.Check the chat is open with the right addressee  
+    4. Greet a friend with your text (text what you wish) 
+   5. assert your sent text in the chat
+ - install the App and execute the test on an emulator
+
+2 TC
+ - create kotlin test - fun
+ - 1. check that the dashboard is loaded 
+   2. open Main Menu (Burger Manu)  
+   3. choose "Custom Clicks" Option and open it  
+   4. check "Custom Clicks" page is open  
+   5. Mark all corner circles 
+   6. Validate all corner circles are marked. 
+ - install the App and execute the test on an emulator
+
+
+### Step 6
+- Try to write clean code, you can use detekt plugin for that (you can add detekt plugin in your android studio)
+
+
+### Step 7
+  -Add project files with new changes in your own repository which will be public
+  -Send us your repository link
+
+
