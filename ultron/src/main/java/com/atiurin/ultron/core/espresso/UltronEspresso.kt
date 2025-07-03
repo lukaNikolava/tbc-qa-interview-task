@@ -5,6 +5,7 @@ package com.atiurin.ultron.core.espresso
 import android.content.Context
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.PerformException
+import androidx.test.espresso.ViewAction
 import androidx.test.platform.app.InstrumentationRegistry
 import com.atiurin.ultron.core.config.UltronConfig
 import com.atiurin.ultron.core.espresso.action.EspressoActionExecutor
@@ -13,7 +14,7 @@ import com.atiurin.ultron.core.espresso.assertion.EspressoAssertionExecutor
 
 object UltronEspresso {
     /** Closes soft keyboard if open. */
-    fun closeSoftKeyboard() {
+    fun closeSoftKeyboard(): ViewAction? {
         executeUltronAction(
             UltronEspressoOperation(
                 operationBlock = { Espresso.closeSoftKeyboard() },
@@ -24,6 +25,7 @@ object UltronEspresso {
             ),
             resultHandler = UltronConfig.Espresso.ViewActionConfig.resultHandler
         )
+        return TODO("Provide the return value")
     }
 
     /**
