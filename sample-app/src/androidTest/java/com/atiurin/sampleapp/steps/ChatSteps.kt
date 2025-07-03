@@ -1,11 +1,11 @@
 package com.atiurin.sampleapp.steps
 
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withText
+import com.atiurin.sampleapp.helper.tap
 import com.atiurin.sampleapp.pages.ChatPage
 
 class ChatSteps {
@@ -18,7 +18,7 @@ class ChatSteps {
     }
 
     fun clickSend(): ChatSteps {
-        onView(chatPage.messageSendButton).perform(click())
+        onView(chatPage.messageSendButton).tap()
         return this
     }
 

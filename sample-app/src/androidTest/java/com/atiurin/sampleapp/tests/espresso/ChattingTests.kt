@@ -40,14 +40,16 @@ class ChattingTests: BaseTest() {
 
     @Test
     fun textWithRachelGreen() {
-        uiSteps
-            .checkTextIsDisplayed(TestConstants.DASHBOARD_TITLE)
-            .openChatByUserName(TestConstants.USER_NAME)
+        uiSteps.apply {
+            checkTextIsDisplayed(TestConstants.DASHBOARD_TITLE)
+            openChatByUserName(TestConstants.USER_NAME)
+        }
 
-        chatSteps
-            .checkChatIsOpenWith(TestConstants.USER_NAME)
-            .typeMessage(TestConstants.MSG_TO_RACHEL)
-            .clickSend()
-            .isMessageDisplayed(TestConstants.MSG_TO_RACHEL)
+        chatSteps.apply {
+            checkChatIsOpenWith(TestConstants.USER_NAME)
+            typeMessage(TestConstants.MSG_TO_RACHEL)
+            clickSend()
+            isMessageDisplayed(TestConstants.MSG_TO_RACHEL)
+        }
     }
 }

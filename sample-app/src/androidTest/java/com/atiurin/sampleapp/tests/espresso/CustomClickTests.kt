@@ -1,5 +1,6 @@
 package com.atiurin.sampleapp.tests.espresso
 
+import androidx.test.espresso.Espresso
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
@@ -8,6 +9,7 @@ import com.atiurin.sampleapp.constants.TestConstants
 import com.atiurin.sampleapp.steps.CustomClickSteps
 import com.atiurin.sampleapp.steps.UIElementSteps
 import com.atiurin.sampleapp.tests.BaseTest
+import com.atiurin.ultron.core.config.UltronConfig
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,14 +26,16 @@ class CustomClickTests: BaseTest() {
 
     @Test
     fun testCustomClicksMarking() {
-        uiSteps
-            .checkTextIsDisplayed(TestConstants.DASHBOARD_TITLE)
-            .openMainMenu()
-            .navCustomClickPage()
+        uiSteps.apply {
+            checkTextIsDisplayed(TestConstants.DASHBOARD_TITLE)
+            openMainMenu()
+            navCustomClickPage()
+        }
 
-        customClicksPageSteps
-            .checkCustomClicksPageIsOpened()
-            .markAllCornerCircles()
-            .validateAllCornerCirclesAreMarked()
+        customClicksPageSteps.apply {
+            checkCustomClicksPageIsOpened()
+            markAllCornerCircles()
+            validateAllCornerCirclesAreMarked()
+        }
     }
 }
