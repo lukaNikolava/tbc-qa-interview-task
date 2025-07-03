@@ -29,4 +29,9 @@ abstract class BaseTest {
             UltronConfig.removeGlobalListener(TimeListener::class.java)
         }
     }
+
+    @After
+    fun tearDown() {
+        Espresso.pressBackUnconditionally()
+    }
 }
