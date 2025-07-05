@@ -1,14 +1,19 @@
 package com.atiurin.sampleapp.helper
 
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.viewpager.widget.ViewPager
 import org.hamcrest.Matcher
+import androidx.test.espresso.matcher.ViewMatchers.isChecked
 import org.hamcrest.core.IsNot.not
 
 /**
@@ -156,4 +161,24 @@ fun Matcher<View>.getViewPagerCount(): Int {
 fun Matcher<View>.assertIfViewIsFocused(timeOutInSec: Int = 3) {
     waitForViewVisible(timeOutInSec)
     onView(this).check(ViewAssertions.matches(ViewMatchers.isFocused()))
+}
+
+/**
+ * Checks that the view has the given text.
+ *
+ * @param expectedText The text that should be displayed in the view.
+ */
+fun Matcher<View>.assertTextEquals(expectedText: String) {
+    onView(this).check(ViewAssertions.matches(withText(expectedText)))
+}
+
+/**
+ * Asserts that the current [ViewInteraction] is displayed on the screen.
+ */
+fun ViewInteraction.assertIsViewDisplayed() {
+    this.check(matches(isDisplayed()))
+}
+
+fun ViewInteraction.assertIsChecked() {
+    this.check(matches(isChecked()))
 }

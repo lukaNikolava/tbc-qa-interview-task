@@ -1,10 +1,9 @@
 package com.atiurin.sampleapp.steps
 
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isChecked
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import com.atiurin.sampleapp.helper.assertIsChecked
+import com.atiurin.sampleapp.helper.assertIsViewDisplayed
 import com.atiurin.sampleapp.helper.tap
 import com.atiurin.sampleapp.pages.CustomClicksPage
 
@@ -13,7 +12,7 @@ class CustomClickSteps {
     private val customClickPage = CustomClicksPage()
 
     fun checkCustomClicksPageIsOpened(): CustomClickSteps {
-        onView(customClickPage.buttonsOverlay).check(matches(isDisplayed()))
+        customClickPage.buttonsOverlay.assertIsViewDisplayed()
         return this
     }
 
@@ -26,7 +25,7 @@ class CustomClickSteps {
 
     fun validateAllCornerCirclesAreMarked(): CustomClickSteps {
         customClickPage.cornerCircleIds.forEach { id ->
-            onView(withId(id)).check(matches(isChecked()))
+            onView(withId(id)).assertIsChecked()
         }
         return this
     }

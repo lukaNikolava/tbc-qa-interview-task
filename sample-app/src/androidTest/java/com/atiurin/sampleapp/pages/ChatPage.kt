@@ -15,10 +15,9 @@ class ChatPage {
     val toolbarTitle: Matcher<View> by lazy { withId(R.id.toolbar_title) }
     private val messagesList: Matcher<View> by lazy { withId(R.id.messages_list) }
 
-    fun getMessageByText(text: String): ViewInteraction {
-        return onView(allOf(
+    fun getMessageByText(text: String): ViewInteraction =
+        onView(allOf(
             withText(text),
             isDescendantOfA(messagesList)
         ))
-    }
 }
