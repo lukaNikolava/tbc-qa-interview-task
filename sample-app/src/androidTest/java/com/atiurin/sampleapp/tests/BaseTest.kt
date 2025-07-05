@@ -2,6 +2,7 @@ package com.atiurin.sampleapp.tests
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso.pressBackUnconditionally
 import androidx.test.platform.app.InstrumentationRegistry
 import com.atiurin.ultron.testlifecycle.rulesequence.RuleSequence
 import com.atiurin.sampleapp.data.repositories.CURRENT_USER
@@ -35,8 +36,20 @@ abstract class BaseTest {
 
     @After
     fun tearDown() {
+        clearAppCache()
+
+        try {
+            pressBackUnconditionally()
+        } catch (e: Exception) {
+            // Already at main screen or no activity to go back from
+        }
+    }
+
+    private fun clearAppCache() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val cacheDir = context.cacheDir
-        cacheDir.deleteRecursively()
+        if (cacheDir.exists()) {
+            cacheDir.deleteRecursively()
+        }
     }
 }
