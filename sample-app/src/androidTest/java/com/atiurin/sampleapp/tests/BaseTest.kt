@@ -11,15 +11,16 @@ import com.atiurin.ultron.core.config.UltronConfig
 import com.atiurin.ultron.listeners.TimeListener
 import com.atiurin.ultron.testlifecycle.setupteardown.SetUpRule
 import org.junit.After
+import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Rule
 
 abstract class BaseTest {
     private val setupRule = SetUpRule().add {
-            AccountManager(InstrumentationRegistry.getInstrumentation().targetContext).login(
-                CURRENT_USER.login, CURRENT_USER.password
-            )
-        }
+        AccountManager(InstrumentationRegistry.getInstrumentation().targetContext).login(
+            CURRENT_USER.login, CURRENT_USER.password
+        )
+    }
 
     @get:Rule
     open val ruleSequence = RuleSequence(setupRule)
@@ -27,9 +28,14 @@ abstract class BaseTest {
     companion object {
         @BeforeClass
         @JvmStatic
-        fun speedUpAutomator() {
+        fun setUpClass() {
             UltronConfig.UiAutomator.speedUp()
             UltronConfig.addGlobalListener(TimeListener())
+        }
+
+        @AfterClass
+        @JvmStatic
+        fun tearDownClass() {
             UltronConfig.removeGlobalListener(TimeListener::class.java)
         }
     }
