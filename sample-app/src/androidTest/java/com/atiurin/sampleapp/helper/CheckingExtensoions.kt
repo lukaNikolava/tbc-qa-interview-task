@@ -168,7 +168,8 @@ fun Matcher<View>.assertIfViewIsFocused(timeOutInSec: Int = 3) {
  *
  * @param expectedText The text that should be displayed in the view.
  */
-fun Matcher<View>.assertTextEquals(expectedText: String) {
+fun Matcher<View>.assertTextEquals(expectedText: String , timeOutInSec: Int = 3) {
+    waitForViewVisible(timeOutInSec)
     onView(this).check(ViewAssertions.matches(withText(expectedText)))
 }
 
@@ -179,6 +180,11 @@ fun ViewInteraction.assertIsViewDisplayed() {
     this.check(matches(isDisplayed()))
 }
 
+/**
+ * Asserts that the current ViewInteraction is checked (e.g., a checkbox or radio button).
+ *
+ * Throws an exception if the view is not checked.
+ */
 fun ViewInteraction.assertIsChecked() {
     this.check(matches(isChecked()))
 }
